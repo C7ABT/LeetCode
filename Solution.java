@@ -376,7 +376,7 @@ public class Solution {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Solution test = new Solution();
-        System.out.println(test.mySqrt(in.nextInt()));
+        // System.out.println();
     }
 
 }
