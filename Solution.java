@@ -1,6 +1,8 @@
+
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
+
 
 public class Solution {
     // 1. Two Sum
@@ -337,7 +339,8 @@ public class Solution {
             res.append(Integer.toString(sum % 2));
             // res.insert(len + 1, Integer.toString(sum % 2));
             /*
-                previous solution will cause out_of_range error
+                previous solution causes REG error,
+                can't access position "len + 1"
             */
             carry = sum / 2;
         }
@@ -348,9 +351,32 @@ public class Solution {
         return res.reverse().toString();
     }
 
+    // 69. Sqrt(x)
+    public int mySqrt(int x) {
+        if (x <= 1) {
+            return x;
+        }
+        int left = 0, right = x;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            // if (x >= mid * mid) {
+            /*
+                previous solution causes TLE error,
+                (mid * mid) might exceed range of Integer
+            */
+            if (x / mid >= mid) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return right - 1;  
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        
+        Solution test = new Solution();
+        System.out.println(test.mySqrt(in.nextInt()));
     }
 
 }
