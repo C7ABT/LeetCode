@@ -334,18 +334,23 @@ public class Solution {
             int x = (len_a >= 0) ? a.charAt(len_a--) - '0' : 0;
             int y = (len_b >= 0) ? b.charAt(len_b--) - '0' : 0;
             int sum = x + y + carry;
-            res.insert(len + 1, Integer.toString(sum % 2));
+            res.append(Integer.toString(sum % 2));
+            // res.insert(len + 1, Integer.toString(sum % 2));
+            /*
+                previous solution will cause out_of_range error
+            */
             carry = sum / 2;
         }
         if (carry == 1) {
-            res.insert(0, "1");
+            // res.insert(0, "1");
+            res.append("1");
         }
-        return res.toString();
+        return res.reverse().toString();
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-
+        
     }
 
 }
