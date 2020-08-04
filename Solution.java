@@ -339,7 +339,7 @@ public class Solution {
             res.append(Integer.toString(sum % 2));
             // res.insert(len + 1, Integer.toString(sum % 2));
             /*
-                previous solution causes REG error,
+                Previous solution causes REG error,
                 can't access position "len + 1"
             */
             carry = sum / 2;
@@ -361,7 +361,7 @@ public class Solution {
             int mid = (left + right) / 2;
             // if (x >= mid * mid) {
             /*
-                previous solution causes TLE error,
+                Previous solution causes TLE error,
                 (mid * mid) might exceed range of Integer
             */
             if (x / mid >= mid) {
@@ -373,6 +373,23 @@ public class Solution {
         return right - 1;  
     }
 
+    // 70. Climbing Stairs
+    public int climbStairs(int n) {
+        if (n <= 1) {
+            return 1;
+        }
+        /*
+            Using recursion causes TLE error
+        */
+        int [] result = new int [n + 1];
+        result[1] = 1;
+        result[2] = 2;
+        for (int i = 3; i < n + 1; ++i) {
+            result[i] = result[i - 1] + result[i - 2];
+        }
+        return result[n];
+    }
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Solution test = new Solution();
