@@ -390,6 +390,38 @@ public class Solution {
         return result[n];
     }
     
+    // 83. Remove Duplicates from Sorted List
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode() {}
+     *     ListNode(int val) { this.val = val; }
+     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode cur = head;
+        /*
+            Can't use expression like cur->next->next here, 
+            it's a function
+        */
+        while (cur != null && cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            }   else {
+                cur = cur.next;
+            }
+        }
+        return head;
+    }
+
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Solution test = new Solution();
