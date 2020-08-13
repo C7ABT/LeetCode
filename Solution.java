@@ -164,7 +164,7 @@ public class Solution {
                 nums[++i] = nums[j];
                 /*
                     Use "put" to overcome the deficiency of "move"
-                    O(n^2) -> O(n)
+                    O(n^2) -> O(n).
                 */
             }
         }
@@ -230,14 +230,14 @@ public class Solution {
         while (--n > 0) {
             String cur = "";
             for (int i = 0; i < res.length(); ++i) {
-                int cnt = 1; // We already have a number if matched
+                int cnt = 1; // We already have a number if matched.
                 while ((i + 1 < res.length()) && (res.charAt(i) == res.charAt(i + 1))) {
                     ++cnt;
                     ++i;
                 }
-                cur += Integer.toString(cnt) + res.charAt(i);   // add count and num to the cur
+                cur += Integer.toString(cnt) + res.charAt(i);   // Add count and num to the cur.
             }
-            res = cur;  // "res[j + 1]" should be the calculated "res[j]"
+            res = cur;  // "res[j + 1]" should be the calculated "res[j]".
         }
         return res;
     }
@@ -340,7 +340,7 @@ public class Solution {
             // res.insert(len + 1, Integer.toString(sum % 2));
             /*
                 Previous solution causes REG error,
-                can't access position "len + 1"
+                can't access position "len + 1".
             */
             carry = sum / 2;
         }
@@ -362,7 +362,7 @@ public class Solution {
             // if (x >= mid * mid) {
             /*
                 Previous solution causes TLE error,
-                (mid * mid) might exceed range of Integer
+                (mid * mid) might exceed range of Integer.
             */
             if (x / mid >= mid) {
                 left = mid + 1;
@@ -379,7 +379,7 @@ public class Solution {
             return 1;
         }
         /*
-            Using recursion causes TLE error
+            Using recursion causes TLE error.
         */
         int [] result = new int [n + 1];
         result[1] = 1;
@@ -409,7 +409,7 @@ public class Solution {
         ListNode cur = head;
         /*
             Can't use expression like cur->next->next here, 
-            it's a function
+            it's a function.
         */
         while (cur != null && cur.next != null) {
             if (cur.val == cur.next.val) {
@@ -419,6 +419,31 @@ public class Solution {
             }
         }
         return head;
+    }
+
+    // 88. Merge Sorted Array
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int pos = m + n - 1, i = m - 1, j = n - 1;
+        /*
+            Instead of moving elements,
+            we can insert elements from the end of the array.
+        */
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[pos] = nums1[i--];
+            }   else {
+                nums1[pos] = nums2[j--];
+            }
+            --pos;
+        }
+        while (i >= 0) {
+            nums1[pos] = nums1[i--];
+            --pos;
+        }
+        while (j >= 0) {
+            nums1[pos] = nums2[j--];
+            --pos;
+        }
     }
 
 
